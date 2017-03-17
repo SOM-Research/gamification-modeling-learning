@@ -1,0 +1,82 @@
+{ 
+	levels : [ 
+		{ 
+		name : novice ,  
+		description : "novice level" , 
+		reward : { 
+					points : 200 , 
+					badgePath : "img/badges/default.png" , 
+					notification : { 
+										message : "Congratulations!" , 
+										iconPath : "img/notifications/level.png" , 
+										soundPath : "sound/level.wav" 
+									}
+				  } , 
+		groups : [ 
+					{ name : activityDiagramGroup , description : "SQL queries" , reward : { points : 50, badgePath : "img/badges/group.png" } , 
+						achievements : [ 
+											{ 
+												name : activity, description : "create an activity diagram called 'MyFirstActivity'", 
+												reward : { points : 20 , badgePath : "img/badges/achievement.png" } , 
+												tasks : [ 
+															{ description : "create an activity" , query : "createumlactivity" } 
+														]
+											} ,
+											{ 
+												name : selectionquery, description : "select all information in table commit", 
+												reward : { points : 10 , badgePath : "img/badges/achievement.png" } , 
+												tasks : [ 
+															{ description : "create selection query" , query : "selectionquery" } 
+														]
+											} ,
+											{ 
+												name : initialNode , description : "create an initial node within your first model" ,
+												reward : { points : 20 , badgePath : "img/badges/achievement.png" } ,
+												tasks : [ 
+															{ description : "create an initial node" , query : "createumlinitialnode" } 
+														]			
+											} 
+										] 
+					  } ,
+					  { name : classDiagramGroup , description : "Class Diagram" , reward : { points : 50, badgePath : "img/badges/group.png" } , 
+						achievements : [ 
+											{ 
+												name : oneClass, description : "create a UML class within a file called 'MyFirstModel'", 
+												reward : { points : 10 , badgePath : "img/badges/achievement.png" } , 
+												tasks : [ 
+															{ description : "create a UML file" , query : "createumlmodel" } , 
+															{ description : "create a UML class" , query : "createumlclass" } 
+														]
+											}
+										]
+					   }
+				   ] 
+		},
+		{ 
+		name : expert , 
+		description : "expert level" , 
+		reward : { 
+					points : 300 , 
+					badgePath : "img/badges/level.png" , 
+					notification : { 
+										message : "Congratulations!" , 
+										iconPath : "img/notifications/level.png" , 
+										soundPath : "sound/level.wav" 
+									}
+				  } , 
+		groups : [ 
+					{ name : advancedClassDiagram , description : "Advanced Class Diagram" , reward : { points : 100, badgePath : "img/badges/group.png" } , 
+						achievements : [ 
+											{ 
+												name : twoClassCreation, description : "create 2 UML classes, 'Family' and 'Person' within your first class model", 
+												reward : { points : 100 , badgePath : "img/badges/achievement.png" } , 
+												tasks : [ 
+															{ description : "create 2 UML classes" , query : "createsimpleexample" } 
+														]
+											}
+										] 
+					  }
+				   ] 
+		}
+	]	
+}		   

@@ -1,0 +1,61 @@
+grammar codeskills.designer.game.status.Status with org.eclipse.xtext.common.Terminals
+
+generate status "http://www.designer.codeskills/game/status/Status"
+
+import "http://www.designer.codeskills/game/Game" as game
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+S:
+	GameS | LevelS | GroupS | AchievementS | TaskS
+;
+
+GameS:
+	'game'
+	'levels' ':' '[' levels+=LevelS (',' levels+=LevelS)* ']'
+	signature=STRING
+	created=LONG
+	status=Status
+	currentScore=INT
+;
+	
+LevelS:
+	'level'
+	level=[game::Level]
+	status=Status
+	isCurrent?=BOOL?
+	'groups' ':' '[' groups+=GroupS (',' groups+=GroupS)* ']'
+;
+
+GroupS:
+	'group'
+	group=[game::Group]
+	status=Status
+	'achievements' ':' '[' achievements+=AchievementS (',' achievements+=AchievementS)* ']'
+;
+
+AchievementS:
+	'achievement'
+	achievement=[game::Achievement]
+	status=Status
+	'tasks' ':' '[' tasks+=TaskS (',' tasks+=TaskS)* ']'
+;
+
+TaskS:
+	'task'
+	task=[game::Task]
+	status=Status
+;
+
+Status:
+	'{'
+		'complete' ':' complete?=BOOL ','
+		'date' ':' milliseconds=LONG 
+	'}'
+;
+
+terminal LONG returns ecore::ELong:
+	('0'..'9')+
+;
+
+terminal BOOL returns ecore::EBoolean:
+	'true' | 'false';

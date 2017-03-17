@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: codeskills.designer.game.ide
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: codeskills.designer.game.ide; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: codeskills.designer.game,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: codeskills.designer.game.ide.contentassist.antlr,
+ codeskills.designer.game.ide.contentassist.antlr.internal
+

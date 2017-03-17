@@ -1,0 +1,38 @@
+grammar codeskills.designer.data.Data with org.eclipse.xtext.common.Terminals
+
+generate data "http://www.designer.codeskills/data/Data"
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+Resource:
+	ContainerResource | File
+;
+
+ContainerResource:
+	Project | Folder
+;
+
+Project:
+	'project' 
+	'{' 
+		'name' ':' name=STRING
+		(',' 'files' ':' '[' files+=File* ']')?
+		(',' 'folders' ':' '[' folders+=Folder* ']')? 
+	'}'
+;
+	
+Folder:
+	'{' 'name' ':' name=STRING 
+	    (',' 'folders' ':' '[' folders+=Folder* ']')? 
+	    (',' 'files' ':' '[' files+=File* ']')? 
+	'}'
+;
+
+File:
+	'{' 'name' ':' name=STRING ',' 'ext' ':' ext=STRING ',' 'changed' ':' changed?=BOOL? 
+		(',' model+=[ecore::EObject]*)?
+	'}'
+;
+
+terminal BOOL returns ecore::EBoolean:
+	'true' | 'false';

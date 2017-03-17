@@ -1,0 +1,44 @@
+import 'http://www.designer.codeskills/data/Data'
+import 'http://www.eclipse.org/uml2/5.0.0/UML'
+import SQL : 'http:///org/eclipse/datatools/modelbase/sql/query/SQLQueryModel.ecore'
+
+package data
+
+context Project
+
+inv createumlfile('A UML model called \'test.uml\' does not exist'):
+    files->exists(file | file.name.toLower() = 'test.uml' and file.model->notEmpty())
+
+inv createumlinitialnode('The UML model does not contain any InitialNode'):
+    files.model->selectByKind(UML::Model).allOwnedElements()->selectByKind(UML::InitialNode)->notEmpty()
+
+inv createumlactivity('A file called \'myfirstactivity.uml\' does not exist'):
+	files->exists(file | file.name.toLower() = 'myfirstactivity.uml' and file.changed = true)
+	
+inv createumlmodel('A file called \'myfirstmodel.uml\' does not exist'):
+	files->exists(file | file.name.toLower() = 'myfirstmodel.uml' and file.changed = true)	
+	
+inv createumlclass('A class within \'myfirstmodel.uml\' is missing'):
+    files->select(f | f.name.toLower() = 'myfirstmodel.uml' and f.model->notEmpty()).model->selectByKind(UML::Model).allOwnedElements()->selectByKind(UML::Class)->notEmpty()
+
+inv createfolder('A folder within \'myfirstproject\' is missing'):
+	self.folders->notEmpty() and self.name.toLower() = 'myfirstproject'
+	
+inv createpapyrusproject('A papyrus project does not exist'):
+	self.name.toLower() = 'myfirstpapyrusproject' 
+	and self.files->exists(f | f.name.endsWith('di'))
+	and self.files->exists(f | f.name.endsWith('notation'))
+	and self.files->exists(f | f.name.endsWith('uml'))
+	
+inv createproject('A project with name \'myfirstproject\' does not exist'):
+	self.name.toLower() = 'myfirstproject'
+	
+inv createsimpleexample('UML classes \'family\' and \'person\' do not exist in \'myfirstmodel.uml\''):
+	files->select(f | f.name.toLower() = 'myfirstmodel.uml' and f.model->notEmpty()).model->selectByKind(UML::Model).allOwnedElements()
+			->selectByKind(UML::Class)->exists(c1, c2 | c1.name.toLower() = 'family' and c2.name.toLower() = 'person')
+			
+inv selectionquery('...'):
+	files->select(f | f.name.toLower() = 'myfirstqueries.sql' and f.model->notEmpty()).model->selectByKind(SQL::QuerySelectStatement).queryExpr.query
+		->exists(qs | qs.columnList->isEmpty() and qs.fromClause->exists(fc | fc.name.toLower() = 'commit'))
+		
+endpackage

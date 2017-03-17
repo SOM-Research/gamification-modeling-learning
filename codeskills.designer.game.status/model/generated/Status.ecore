@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="status" nsURI="http://www.designer.codeskills/game/status/Status"
+    nsPrefix="status">
+  <eClassifiers xsi:type="ecore:EClass" name="S">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="status" eType="#//Status"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GameS" eSuperTypes="#//S">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="levels" upperBound="-1"
+        eType="#//LevelS" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="signature" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="created" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="currentScore" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LevelS" eSuperTypes="#//S">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="level" eType="ecore:EClass platform:/resource/codeskills.designer.game/model/generated/Game.ecore#//Level"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isCurrent" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="groups" upperBound="-1"
+        eType="#//GroupS" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GroupS" eSuperTypes="#//S">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="group" eType="ecore:EClass platform:/resource/codeskills.designer.game/model/generated/Game.ecore#//Group"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="achievements" upperBound="-1"
+        eType="#//AchievementS" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AchievementS" eSuperTypes="#//S">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="achievement" eType="ecore:EClass platform:/resource/codeskills.designer.game/model/generated/Game.ecore#//Achievement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" upperBound="-1"
+        eType="#//TaskS" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TaskS" eSuperTypes="#//S">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="task" eType="ecore:EClass platform:/resource/codeskills.designer.game/model/generated/Game.ecore#//Task"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Status">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="complete" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="milliseconds" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+  </eClassifiers>
+</ecore:EPackage>

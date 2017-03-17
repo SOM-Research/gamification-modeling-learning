@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: codeskills.designer.data
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: codeskills.designer.data; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.uml2.uml;bundle-version="5.2.2",
+ org.eclipse.uml2.codegen.ecore;bundle-version="2.2.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib,
+ org.antlr.runtime,
+ org.eclipse.xtext.util,
+ org.eclipse.xtend.lib,
+ org.eclipse.emf.common,
+ org.eclipse.datatools.modelbase.sql;bundle-version="1.1.0",
+ org.eclipse.datatools.modelbase.sql.query;bundle-version="1.2.0",
+ org.eclipse.datatools.modelbase.dbdefinition;bundle-version="1.1.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: codeskills.designer.data,
+ codeskills.designer.data.services,
+ codeskills.designer.data.serializer,
+ codeskills.designer.data.data.util,
+ codeskills.designer.data.parser.antlr.internal,
+ codeskills.designer.data.validation,
+ codeskills.designer.data.scoping,
+ codeskills.designer.data.data,
+ codeskills.designer.data.parser.antlr,
+ codeskills.designer.data.generator,
+ codeskills.designer.data.data.impl
+Import-Package: org.apache.log4j

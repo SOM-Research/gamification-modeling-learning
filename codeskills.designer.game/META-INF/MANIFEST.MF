@@ -1,0 +1,32 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: codeskills.designer.game
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: codeskills.designer.game; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib,
+ org.antlr.runtime,
+ org.eclipse.xtext.util,
+ org.eclipse.xtend.lib,
+ org.eclipse.emf.common,
+ org.eclipse.xtext.common.types,
+ org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: codeskills.designer.game.game.impl,
+ codeskills.designer.game.generator,
+ codeskills.designer.game.parser.antlr.internal,
+ codeskills.designer.game.validation,
+ codeskills.designer.game.scoping,
+ codeskills.designer.game,
+ codeskills.designer.game.services,
+ codeskills.designer.game.game.util,
+ codeskills.designer.game.game,
+ codeskills.designer.game.serializer,
+ codeskills.designer.game.parser.antlr,
+ codeskills.designer.game.jvmmodel
+Import-Package: org.apache.log4j

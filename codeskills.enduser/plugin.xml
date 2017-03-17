@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="codeskills.listener.ListenerInitializer">
+      </startup>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            description="Show statistics"
+            id="codeskills.commands.showStats"
+            name="Show statistics">
+      </command>
+      <command
+            description="Reset game"
+            id="codeskills.commands.resetGame"
+            name="Reset game">
+      </command>
+      <command
+            description="Submit result"
+            id="codeskills.commands.submitResult"
+            name="Submit result">
+      </command>
+      <command
+            description="Start/End game"
+            id="codeskills.commands.toggleGame"
+            name="Start/End game">
+         <state
+               class="org.eclipse.ui.handlers.RegistryToggleState:false"
+               id="codeskills.commands.toggleState">
+         </state>
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="codeskills.handlers.OpenStatisticSiteHandler"
+            commandId="codeskills.commands.showStats">
+         <enabledWhen>
+            <test
+                  property="codeskills.tester.active"
+                  value="true">
+            </test>
+         </enabledWhen>
+      </handler>
+      <handler
+            class="codeskills.handlers.ResetGameHandler"
+            commandId="codeskills.commands.resetGame">
+         <enabledWhen>
+            <test
+                  property="codeskills.tester.active"
+                  value="true">
+            </test>
+         </enabledWhen>
+      </handler>
+      <handler
+            class="codeskills.handlers.ToggleGameHandler"
+            commandId="codeskills.commands.toggleGame">
+      </handler>
+      <handler
+            class="codeskills.handlers.SubmitGameStatusHandler"
+            commandId="codeskills.commands.submitResult">
+         <enabledWhen>
+            <test
+                  property="codeskills.tester.active"
+                  value="true">
+            </test>
+         </enabledWhen>
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               icon="img/menuIcon.png"
+               label="CodeSkills"
+               mnemonic="C">
+            <command
+                  commandId="codeskills.commands.toggleGame"
+                  icon="img/startIcon.png"
+                  label="Start/End game"
+                  mnemonic="G"
+                  tooltip="Start/End game">
+            </command>
+            <command
+                  commandId="codeskills.commands.resetGame"
+                  icon="img/resetIcon.png"
+                  label="Reset game"
+                  mnemonic="R"
+                  tooltip="Reset game">
+            </command>
+            <command
+                  commandId="codeskills.commands.showStats"
+                  icon="img/showIcon.png"
+                  label="Show statistics"
+                  mnemonic="S"
+                  tooltip="Show statistics">
+            </command>
+            <command
+                  commandId="codeskills.commands.submitResult"
+                  icon="img/submitIcon.png"
+                  label="Submit result"
+                  mnemonic="C"
+                  style="push"
+                  tooltip="Submit result">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="codeskills.tester.ActiveTester"
+            id="codeskills.tester.active"
+            namespace="codeskills.tester"
+            properties="active"
+            type="java.lang.Object">
+      </propertyTester>
+   </extension>
+
+</plugin>
