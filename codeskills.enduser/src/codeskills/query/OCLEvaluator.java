@@ -16,9 +16,11 @@ import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.Query;
 
+import codeskills.designer.data.data.DataPackage;
+
 public class OCLEvaluator {
 
-	private static final OCL ocl = OCL.newInstance();
+	private OCL ocl = OCL.newInstance();
 	private URI oclLocation;
 	private Map<String, ExpressionInOCL> constraints;
 	private Logger logger = Logger.getAnonymousLogger();
@@ -29,7 +31,6 @@ public class OCLEvaluator {
 	}
 	
 	public ExpressionInOCL getConstraint(String queryName) {
-		this.constraints = loadConstraints(this.oclLocation);
 		return this.constraints.get(queryName);
 	}
 	
@@ -57,6 +58,19 @@ public class OCLEvaluator {
 		
 		return success;
 
+	}
+	
+	private void testOclExpression(Resource resource) {
+		try {
+			ExpressionInOCL query = ocl.createInvariant(DataPackage.Literals.PROJECT, 
+					"files->select(f | f.ext.toLower() = 'sql' and f.model->notEmpty()).model->notEmpty()");
+			Query q = ocl.createQuery(query);
+			boolean success = q.checkBoxed(resource.getContents());
+			System.out.println(success);
+		} catch (ParserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private Map<String, ExpressionInOCL> loadConstraints(URI uriResource) {

@@ -82,7 +82,7 @@ public class ProjectManager {
 					
 		}
 		catch (Exception e) {
-			logger.log(java.util.logging.Level.FINE, "[ProjectManager] project data not collected for " + resource.getName(), e);
+			logger.log(java.util.logging.Level.WARNING, "[ProjectManager] project data not collected for " + resource.getName(), e);
 		}
 		
 		Resource projectResource = this.resourceSet.createResource(URI.createFileURI("the-amazing-resource.xmi"));
@@ -189,7 +189,7 @@ public class ProjectManager {
 			for (SQLQueryParseResult parseResult : parseResults) {
 				QueryStatement resultObject = parseResult.getQueryStatement();
 				String parsedSQL = resultObject.getSQL();
-				System.out.println(parsedSQL);
+				//System.out.println(parsedSQL);
 				EcoreUtil.resolveAll(resultObject);
 				SqlResource.getContents().add(resultObject);
 			}

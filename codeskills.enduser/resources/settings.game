@@ -1,78 +1,102 @@
 { 
 	levels : [ 
 		{ 
-		name : novice ,  
-		description : "novice level" , 
+		name : beginner ,  
+		description : "beginner level" , 
 		reward : { 
-					points : 200 , 
+					points : 50 , 
 					badgePath : "img/badges/default.png" , 
 					notification : { 
-										message : "Congratulations!" , 
+										message : "Congratulations! you've just finished the beginner level" , 
 										iconPath : "img/notifications/level.png" , 
 										soundPath : "sound/level.wav" 
 									}
 				  } , 
 		groups : [ 
-					{ name : activityDiagramGroup , description : "SQL queries" , reward : { points : 50, badgePath : "img/badges/group.png" } , 
+					{ name : simpleStatements , description : "Get familiar with SQL" , reward : { points : 10, badgePath : "img/badges/group.png" } , 
 						achievements : [ 
 											{ 
-												name : activity, description : "create an activity diagram called 'MyFirstActivity'", 
+												name : simpleselect, description : "Connect to the database DB_2048 and write a SQL query that selects all information from table Commit", 
 												reward : { points : 20 , badgePath : "img/badges/achievement.png" } , 
 												tasks : [ 
-															{ description : "create an activity" , query : "createumlactivity" } 
+															{ description : "create a simple SQL query" , query : "simpleselect" } 
 														]
 											} ,
 											{ 
-												name : selectionquery, description : "select all information in table commit", 
-												reward : { points : 10 , badgePath : "img/badges/achievement.png" } , 
-												tasks : [ 
-															{ description : "create selection query" , query : "selectionquery" } 
-														]
-											} ,
-											{ 
-												name : initialNode , description : "create an initial node within your first model" ,
+												name : simplefilter , description : "Connect to the database DB_2048 and write a SQL query that selects all commits created on Mondays" ,
 												reward : { points : 20 , badgePath : "img/badges/achievement.png" } ,
 												tasks : [ 
-															{ description : "create an initial node" , query : "createumlinitialnode" } 
+															{ description : "use filter" , query : "simplefilter" } 
 														]			
-											} 
+											}
 										] 
-					  } ,
-					  { name : classDiagramGroup , description : "Class Diagram" , reward : { points : 50, badgePath : "img/badges/group.png" } , 
+					  },
+					  { name : simpleDiagrams , description : "Get familiar with UML" , reward : { points : 10, badgePath : "img/badges/group.png" } , 
 						achievements : [ 
 											{ 
-												name : oneClass, description : "create a UML class within a file called 'MyFirstModel'", 
-												reward : { points : 10 , badgePath : "img/badges/achievement.png" } , 
+												name : createumlfile , description : "Create a UML file called 'MyFirstModel'" ,
+												reward : { points : 20 , badgePath : "img/badges/achievement.png" } ,
 												tasks : [ 
-															{ description : "create a UML file" , query : "createumlmodel" } , 
-															{ description : "create a UML class" , query : "createumlclass" } 
+															{ description : "create a UML model" , query : "createumlfile" } 
+														]			
+											},
+											{ 
+												name : simplediagram, description : "In 'MyFirstModel' model a Person, she has a first name, last name and age", 
+												reward : { points : 20 , badgePath : "img/badges/achievement.png" } , 
+												tasks : [ 
+															{ description : "create a simple UML diagram" , query : "simplediagram" } 
 														]
-											}
-										]
-					   }
+											} 
+										] 
+					  }
 				   ] 
 		},
 		{ 
-		name : expert , 
+		name : expert ,  
 		description : "expert level" , 
 		reward : { 
-					points : 300 , 
-					badgePath : "img/badges/level.png" , 
+					points : 100 , 
+					badgePath : "img/badges/default.png" , 
 					notification : { 
-										message : "Congratulations!" , 
+										message : "Congratulations! you've just finished the expert level" , 
 										iconPath : "img/notifications/level.png" , 
 										soundPath : "sound/level.wav" 
 									}
 				  } , 
 		groups : [ 
-					{ name : advancedClassDiagram , description : "Advanced Class Diagram" , reward : { points : 100, badgePath : "img/badges/group.png" } , 
+					{ name : advancedStatements , description : "Get familiar with advanced SQL commands" , reward : { points : 20, badgePath : "img/badges/group.png" } , 
 						achievements : [ 
 											{ 
-												name : twoClassCreation, description : "create 2 UML classes, 'Family' and 'Person' within your first class model", 
-												reward : { points : 100 , badgePath : "img/badges/achievement.png" } , 
+												name : join , description : "Connect to the database DB_2048 and write a SQL query that joins the tables Commit and File Modification" ,
+												reward : { points : 30 , badgePath : "img/badges/achievement.png" } ,
 												tasks : [ 
-															{ description : "create 2 UML classes" , query : "createsimpleexample" } 
+															{ description : "use join" , query : "join" } 
+														]			
+											},
+											{ 
+												name : groupby , description : "Connect to the database DB_2048, write a SQL query that joins the tables Commit and File Modification and count the number of files modified per developer" ,
+												reward : { points : 30 , badgePath : "img/badges/achievement.png" } ,
+												tasks : [ 
+															{ description : "use group by" , query : "groupby" } 
+														]			
+											}
+										] 
+					  },
+					  { name : advancedDiagrams , description : "Get familiar with advanced UML" , reward : { points : 20, badgePath : "img/badges/group.png" } , 
+						achievements : [ 											
+											{ 
+												name : diagram, description : "In 'MyFirstModel' include that a Family is composed of one or more Persons", 
+												reward : { points : 30 , badgePath : "img/badges/achievement.png" } , 
+												tasks : [ 
+															{ description : "create a simple UML diagram" , query : "diagram" } 
 														]
+											},
+											{ 
+												name : generalization , description : "In 'MyFirstModel' add that a Person can be Male or Female" ,
+												reward : { points : 30 , badgePath : "img/badges/achievement.png" } ,
+												tasks : [ 
+															{ description : "add generalization" , query : "generalization" } 
+														]			
 											}
 										] 
 					  }

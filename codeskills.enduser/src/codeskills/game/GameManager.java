@@ -210,6 +210,8 @@ public class GameManager {
 		boolean isComplete = true;
 		List<Task> activeTasks = this.statusManager.getActiveTasks(achievement);
 		
+		//Uncomment it to test the OCL queries without reloading the plugin
+		//this.oclEvaluator = new OCLEvaluator(this.resourceManager.getOCLQueriesURI());
 		for (Task t : activeTasks) {
 			if (oclEvaluator.execute(projectData, t.getQueryName())) {
 				this.statusManager.setStatusComplete(t);
