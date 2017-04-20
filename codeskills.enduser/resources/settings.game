@@ -41,10 +41,10 @@
 														]			
 											},
 											{ 
-												name : simplediagram, description : "In 'MyFirstModel' model a Person, she has a first name, last name and age", 
+												name : simplediagram, description : "In 'MyFirstModel' model a Repository and a Reference, they are defined by a name", 
 												reward : { points : 20 , badgePath : "img/badges/achievement.png" } , 
 												tasks : [ 
-															{ description : "create a simple UML diagram" , query : "simplediagram" } 
+															{ description : "create two UML classes" , query : "simplediagram" } 
 														]
 											} 
 										] 
@@ -85,17 +85,17 @@
 					  { name : advancedDiagrams , description : "Get familiar with advanced UML" , reward : { points : 20, badgePath : "img/badges/group.png" } , 
 						achievements : [ 											
 											{ 
-												name : diagram, description : "In 'MyFirstModel' include that a Family is composed of one or more Persons", 
+												name : association, description : "In 'MyFirstModel' include that a Repository is composed of one or more References", 
 												reward : { points : 30 , badgePath : "img/badges/achievement.png" } , 
 												tasks : [ 
-															{ description : "create a simple UML diagram" , query : "diagram" } 
+															{ description : "create an association" , query : "association" } 
 														]
 											},
 											{ 
-												name : generalization , description : "In 'MyFirstModel' add that a Person can be Male or Female" ,
+												name : generalization , description : "In 'MyFirstModel' add that a Reference can be a Branch or a Tag" ,
 												reward : { points : 30 , badgePath : "img/badges/achievement.png" } ,
 												tasks : [ 
-															{ description : "add generalization" , query : "generalization" } 
+															{ description : "add a generalization" , query : "generalization" } 
 														]			
 											}
 										] 

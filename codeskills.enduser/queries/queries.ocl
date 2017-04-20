@@ -32,11 +32,14 @@ inv createumlfile:
 
 inv simplediagram:
 	files->select(f | f.name.toLower() = 'myfirstmodel.uml' and f.model->notEmpty()).model->selectByKind(UML::Model).allOwnedElements()->selectByKind(UML::Class)
-    		->exists(c | c.name.toLower() = 'person' and 
-    			         c.ownedAttribute->size() = 3 and
-    			         c.ownedAttribute->exists(p | p.name.toLower() = 'firstname') and
-    			         c.ownedAttribute->exists(p | p.name.toLower() = 'lastname') and
-    			         c.ownedAttribute->exists(p | p.name.toLower() = 'age')
+    		->exists(c | c.name.toLower() = 'repository' and 
+    			         c.ownedAttribute->size() = 1 and
+    			         c.ownedAttribute->exists(p | p.name.toLower() = 'name')
+    		) and
+    files->select(f | f.name.toLower() = 'myfirstmodel.uml' and f.model->notEmpty()).model->selectByKind(UML::Model).allOwnedElements()->selectByKind(UML::Class)
+    		->exists(c | c.name.toLower() = 'reference' and 
+    			         c.ownedAttribute->size() = 1 and
+    			         c.ownedAttribute->exists(p | p.name.toLower() = 'name')
     		)
 				
 inv join:
@@ -66,18 +69,18 @@ inv groupby:
 				q.groupByClause->selectByKind(SQL::GroupingExpression).valueExpr->exists(expr | expr.name.toLower() = 'author_id')
 			)
 			
-inv diagram:
+inv association:
     files->select(f | f.name.toLower() = 'myfirstmodel.uml' and f.model->notEmpty()).model->selectByKind(UML::Model).allOwnedElements()->selectByKind(UML::Association)
     	->exists(a | a.memberEnd->exists(m1, m2 | m1.upperValue.oclIsTypeOf(UML::LiteralUnlimitedNatural) and 
     										(m1.lowerValue.oclIsTypeOf(UML::LiteralInteger) implies m1.lowerValue.integerValue() = 1) and
-    										 m1.type.name.toLower() = 'person' and m2.type.name.toLower() = 'family')
+    										 m1.type.name.toLower() = 'reference' and m2.type.name.toLower() = 'repository')
     			)
     			
 inv generalization:
     files->select(f | f.name.toLower() = 'myfirstmodel.uml' and f.model->notEmpty()).model->selectByKind(UML::Model).allOwnedElements()->selectByKind(UML::Class)
-    	->exists(c1, c2 |  c1.name.toLower() = 'male' and c2.name.toLower() = 'female' and 
-    					   c1.superClass->exists(sc | sc.name.toLower() = 'person') and 
-    					   c2.superClass->exists(sc | sc.name.toLower() = 'person')  
+    	->exists(c1, c2 |  c1.name.toLower() = 'branch' and c2.name.toLower() = 'tag' and 
+    					   c1.superClass->exists(sc | sc.name.toLower() = 'reference') and 
+    					   c2.superClass->exists(sc | sc.name.toLower() = 'reference')  
     	)
 			
 endpackage
