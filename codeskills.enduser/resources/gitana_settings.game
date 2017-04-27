@@ -16,14 +16,14 @@
 					{ name : simpleStatements , description : "Get familiar with SQL" , reward : { points : 10, badgePath : "img/badges/group.png" } , 
 						achievements : [ 
 											{ 
-												name : simpleselect, description : "Connect to the database employees and write a SQL query that selects all information from table departments", 
+												name : simpleselect, description : "Connect to the database DB_2048 and write a SQL query that selects all information from table Commit", 
 												reward : { points : 20 , badgePath : "img/badges/achievement.png" } , 
 												tasks : [ 
 															{ description : "create a simple SQL query" , query : "simpleselect" } 
 														]
 											} ,
 											{ 
-												name : simplefilter , description : "Connect to the database employees and write a SQL query that selects all employees hired in 2000" ,
+												name : simplefilter , description : "Connect to the database DB_2048 and write a SQL query that selects all commits created on Mondays" ,
 												reward : { points : 20 , badgePath : "img/badges/achievement.png" } ,
 												tasks : [ 
 															{ description : "use filter" , query : "simplefilter" } 
@@ -41,7 +41,7 @@
 														]			
 											},
 											{ 
-												name : simplediagram, description : "In 'MyFirstModel' model an Employee and a Department. The former has a first name, last name and birth date, while the latter is defined by a name", 
+												name : simplediagram, description : "In 'MyFirstModel' model a Repository and a Reference, they are defined by a name", 
 												reward : { points : 20 , badgePath : "img/badges/achievement.png" } , 
 												tasks : [ 
 															{ description : "create two UML classes" , query : "simplediagram" } 
@@ -67,14 +67,14 @@
 					{ name : advancedStatements , description : "Get familiar with advanced SQL commands" , reward : { points : 20, badgePath : "img/badges/group.png" } , 
 						achievements : [ 
 											{ 
-												name : join , description : "Connect to the database employees and write a SQL query that joins the tables Employees and Salaries" ,
+												name : join , description : "Connect to the database DB_2048 and write a SQL query that joins the tables Commit and File Modification" ,
 												reward : { points : 30 , badgePath : "img/badges/achievement.png" } ,
 												tasks : [ 
 															{ description : "use join" , query : "join" } 
 														]			
 											},
 											{ 
-												name : groupby , description : "Connect to the database employees, write a SQL query that joins the tables Employees and Salaries and sum the salaries per gender" ,
+												name : groupby , description : "Connect to the database DB_2048, write a SQL query that joins the tables Commit and File Modification and count the number of files modified per developer" ,
 												reward : { points : 30 , badgePath : "img/badges/achievement.png" } ,
 												tasks : [ 
 															{ description : "use group by" , query : "groupby" } 
@@ -85,14 +85,14 @@
 					  { name : advancedDiagrams , description : "Get familiar with advanced UML" , reward : { points : 20, badgePath : "img/badges/group.png" } , 
 						achievements : [ 											
 											{ 
-												name : association, description : "In 'MyFirstModel' include that a Department includes one or more employees", 
+												name : association, description : "In 'MyFirstModel' include that a Repository is composed of one or more References", 
 												reward : { points : 30 , badgePath : "img/badges/achievement.png" } , 
 												tasks : [ 
 															{ description : "create an association" , query : "association" } 
 														]
 											},
 											{ 
-												name : generalization , description : "In 'MyFirstModel' add that an Employee can be Male or Female" ,
+												name : generalization , description : "In 'MyFirstModel' add that a Reference can be a Branch or a Tag" ,
 												reward : { points : 30 , badgePath : "img/badges/achievement.png" } ,
 												tasks : [ 
 															{ description : "add a generalization" , query : "generalization" } 

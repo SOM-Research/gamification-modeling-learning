@@ -11,18 +11,18 @@ inv simpleselect:
 	files->select(f | f.ext.toLower() = 'sql' and f.model->notEmpty()).model->selectByKind(SQL::QuerySelectStatement)
 			.queryExpr.query->selectByKind(SQL::QuerySelect)->exists(q | 
 				q.columnList->isEmpty() and 
-				q.fromClause->exists(tr | tr.name.toLower() = 'departments') and 
+				q.fromClause->exists(tr | tr.name.toLower() = 'commit') and 
 				q.whereClause->isEmpty() and 
 				q.groupByClause->isEmpty())
 				
 inv simplefilter:
 	files->select(f | f.ext.toLower() = 'sql' and f.model->notEmpty()).model->selectByKind(SQL::QuerySelectStatement)
 			.queryExpr.query->selectByKind(SQL::QuerySelect)->exists(q | 
-				q.fromClause->exists(tr | tr.name.toLower() = 'employees') 
-				and q.whereClause->selectByKind(SQL::PredicateBasic)->exists(pb | pb.rightValueExpr->selectByKind(SQL::ValueExpressionSimple)->exists(rv | rv.value = '2000') and
-																				  pb.leftValueExpr->selectByKind(SQL::ValueExpressionFunction)->exists(f | f.name.toLower() = 'year' and 
+				q.fromClause->exists(tr | tr.name.toLower() = 'commit') 
+				and q.whereClause->selectByKind(SQL::PredicateBasic)->exists(pb | pb.rightValueExpr->selectByKind(SQL::ValueExpressionSimple)->exists(rv | rv.value = '0') and
+																				  pb.leftValueExpr->selectByKind(SQL::ValueExpressionFunction)->exists(f | f.name.toLower() = 'weekday' and 
 																				  																		   f.parameterList->size() = 1 and 
-																				  																		   f.parameterList->exists(pl | pl.name.toLower() = 'hired_date'))
+																				  																		   f.parameterList->exists(pl | pl.name.toLower() = 'committed_date' or pl.name.toLower() = 'authored_date'))
 				)
 				and q.groupByClause->isEmpty())	
 				
@@ -32,14 +32,12 @@ inv createumlfile:
 
 inv simplediagram:
 	files->select(f | f.name.toLower() = 'myfirstmodel.uml' and f.model->notEmpty()).model->selectByKind(UML::Model).allOwnedElements()->selectByKind(UML::Class)
-    		->exists(c | c.name.toLower() = 'employee' and 
-    			         c.ownedAttribute->size() = 3 and
-    			         c.ownedAttribute->exists(p | p.name.toLower() = 'firstname') and
-    			         c.ownedAttribute->exists(p | p.name.toLower() = 'lastname') and
-    			         c.ownedAttribute->exists(p | p.name.toLower() = 'birthdate')
+    		->exists(c | c.name.toLower() = 'repository' and 
+    			         c.ownedAttribute->size() = 1 and
+    			         c.ownedAttribute->exists(p | p.name.toLower() = 'name')
     		) and
     files->select(f | f.name.toLower() = 'myfirstmodel.uml' and f.model->notEmpty()).model->selectByKind(UML::Model).allOwnedElements()->selectByKind(UML::Class)
-    		->exists(c | c.name.toLower() = 'department' and 
+    		->exists(c | c.name.toLower() = 'reference' and 
     			         c.ownedAttribute->size() = 1 and
     			         c.ownedAttribute->exists(p | p.name.toLower() = 'name')
     		)
@@ -47,9 +45,9 @@ inv simplediagram:
 inv join:
 	files->select(f | f.ext.toLower() = 'sql' and f.model->notEmpty()).model->selectByKind(SQL::QuerySelectStatement)
 			.queryExpr.query->selectByKind(SQL::QuerySelect)->exists(q | 
-				q.fromClause->selectByKind(SQL::TableJoined)->exists(tj | (tj.tableRefLeft.name.toLower() = 'employees' and tj.tableRefRight.name.toLower() = 'salaries') 
+				q.fromClause->selectByKind(SQL::TableJoined)->exists(tj | (tj.tableRefLeft.name.toLower() = 'commit' and tj.tableRefRight.name.toLower() = 'file_modification') 
 																		  or
-																		  (tj.tableRefLeft.name.toLower() = 'salaries' and tj.tableRefRight.name.toLower() = 'employees')															
+																		  (tj.tableRefLeft.name.toLower() = 'file_modification' and tj.tableRefRight.name.toLower() = 'commit')															
 																	) and
 				q.whereClause->isEmpty() and 
 				q.groupByClause->isEmpty()
@@ -59,30 +57,30 @@ inv groupby:
 	files->select(f | f.ext.toLower() = 'sql' and f.model->notEmpty()).model->selectByKind(SQL::QuerySelectStatement)
 			.queryExpr.query->selectByKind(SQL::QuerySelect)->exists(q | 
 				q.selectClause->size() = 2 and
-				q.selectClause->selectByKind(SQL::ResultColumn).valueExpr->selectByKind(SQL::ValueExpressionColumn)->exists(expr | expr.name.toLower() = 'gender') and
-				q.selectClause->selectByKind(SQL::ResultColumn).valueExpr->selectByKind(SQL::ValueExpressionFunction)->exists(expr | expr.name.toLower() = 'sum' and expr.parameterList->exists(pl | pl.name.toLower() = 'salary')) 
+				q.selectClause->selectByKind(SQL::ResultColumn).valueExpr->selectByKind(SQL::ValueExpressionColumn)->exists(expr | expr.name.toLower() = 'author_id') and
+				q.selectClause->selectByKind(SQL::ResultColumn).valueExpr->selectByKind(SQL::ValueExpressionFunction)->exists(expr | expr.name.toLower() = 'count' and expr.parameterList->exists(pl | pl.name.toLower() = 'file_id')) 
 				and
-				q.fromClause->selectByKind(SQL::TableJoined)->exists(tj | (tj.tableRefLeft.name.toLower() = 'employees' and tj.tableRefRight.name.toLower() = 'salaries') 
+				q.fromClause->selectByKind(SQL::TableJoined)->exists(tj | (tj.tableRefLeft.name.toLower() = 'commit' and tj.tableRefRight.name.toLower() = 'file_modification') 
 																		  or
-																		  (tj.tableRefLeft.name.toLower() = 'salaries' and tj.tableRefRight.name.toLower() = 'employees')	
+																		  (tj.tableRefLeft.name.toLower() = 'file_modification' and tj.tableRefRight.name.toLower() = 'commit')	
 																	) and
 				q.whereClause->isEmpty() and 
 				q.groupByClause->size() = 1 and
-				q.groupByClause->selectByKind(SQL::GroupingExpression).valueExpr->exists(expr | expr.name.toLower() = 'gender')
+				q.groupByClause->selectByKind(SQL::GroupingExpression).valueExpr->exists(expr | expr.name.toLower() = 'author_id')
 			)
 			
 inv association:
     files->select(f | f.name.toLower() = 'myfirstmodel.uml' and f.model->notEmpty()).model->selectByKind(UML::Model).allOwnedElements()->selectByKind(UML::Association)
     	->exists(a | a.memberEnd->exists(m1, m2 | m1.upperValue.oclIsTypeOf(UML::LiteralUnlimitedNatural) and 
     										(m1.lowerValue.oclIsTypeOf(UML::LiteralInteger) implies m1.lowerValue.integerValue() = 1) and
-    										 m1.type.name.toLower() = 'employee' and m2.type.name.toLower() = 'department')
+    										 m1.type.name.toLower() = 'reference' and m2.type.name.toLower() = 'repository')
     			)
     			
 inv generalization:
     files->select(f | f.name.toLower() = 'myfirstmodel.uml' and f.model->notEmpty()).model->selectByKind(UML::Model).allOwnedElements()->selectByKind(UML::Class)
-    	->exists(c1, c2 |  c1.name.toLower() = 'male' and c2.name.toLower() = 'female' and 
-    					   c1.superClass->exists(sc | sc.name.toLower() = 'employee') and 
-    					   c2.superClass->exists(sc | sc.name.toLower() = 'employee')  
+    	->exists(c1, c2 |  c1.name.toLower() = 'branch' and c2.name.toLower() = 'tag' and 
+    					   c1.superClass->exists(sc | sc.name.toLower() = 'reference') and 
+    					   c2.superClass->exists(sc | sc.name.toLower() = 'reference')  
     	)
 			
 endpackage
