@@ -22,7 +22,7 @@ inv simplefilter:
 				and q.whereClause->selectByKind(SQL::PredicateBasic)->exists(pb | pb.rightValueExpr->selectByKind(SQL::ValueExpressionSimple)->exists(rv | rv.value = '2000') and
 																				  pb.leftValueExpr->selectByKind(SQL::ValueExpressionFunction)->exists(f | f.name.toLower() = 'year' and 
 																				  																		   f.parameterList->size() = 1 and 
-																				  																		   f.parameterList->exists(pl | pl.name.toLower() = 'hired_date'))
+																				  																		   f.parameterList->exists(pl | pl.name.toLower() = 'hire_date'))
 				)
 				and q.groupByClause->isEmpty())	
 				
